@@ -1,65 +1,75 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Controle Financeiro</title>
 
     <!-- FONT AWESOME -->
-    <script src="https://kit.fontawesome.com/521d690544.js" crossorigin="anonymous"></script>
+    <script
+      src="https://kit.fontawesome.com/521d690544.js"
+      crossorigin="anonymous"
+    ></script>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="css/style.css">
-
-
-</head>
-<body>
-    
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
     <header id="header">
-        <div class="container">
-            <section class="dados">
-                <i class="fa-solid fa-shield-cat" style="color: #202327;"></i>  
-                <p class="nome">Bem-vinda Juliana</p>
-            </section>
-        </div>
+      <div class="container">
+        <section class="dados">
+          <i class="fa-solid fa-shield-cat" style="color: rgb(96, 19, 96)"></i>
+          <p class="nome">Bem-vinda Juliana</p>
+        </section>
+      </div>
     </header>
 
-
     <main id="main">
-        <div class="container">
-            <section class="financas">
-                <div class="resumo">
-                    <p>Entradas: R$ <span class="entrada">0.00</span></p>
-                    <p>Saídas: R$ <span class="saida">0.00</span></p>
-                    <p>Total: R$ <span class="total">0.00</span></p>
-                </div>
-                <div class="proximoItem">
-                    <div class="div-descricao">
-                        <label for="descricao" class="descricao">Descrição:</label>
-                        <input type="text" id="descricao">
-                    </div>
-                    <div class="div-valor">
-                        <label for="valor" class="valor">Valor:</label>
-                        <input type="number" id="valor">
-                    </div>
-                    <div class="div-tipo">
-                        <label for="tipe" class="tipo">Tipo:</label>
-                        <select id="tipo">
-                            <option value="entrada">Entrada</option>
-                            <option value="saida">Saída</option>
-                        </select>
-                    </div>
-                    <div class="div-botao">
-                        <button id="incluir">Incluir</button>
-                    </div>
-                </div>
-                
-            </section>
-        </div>
+      <div class="container">
+        <section class="financas">
+          <div class="resumo">
+            <p>Entradas: R$ <span class="entrada">0.00</span></p>
+            <p>Saídas: R$ <span class="saida">0.00</span></p>
+            <p>Total: R$ <span class="total">0.00</span></p>
+          </div>
+          <div class="proximoItem">
+            <div class="div-descricao">
+              <label for="descricao" class="descricao">Descrição:</label>
+              <input type="text" id="descricao" />
+            </div>
+            <div class="div-valor">
+              <label for="valor" class="valor">Valor:</label>
+              <input type="number" id="valor" />
+            </div>
+            <div class="div-tipo">
+              <label for="tipe" class="tipo">Tipo:</label>
+              <select id="tipo">
+                <option value="entrada">Entrada</option>
+                <option value="saida">Saída</option>
+              </select>
+            </div>
+            <div class="div-botao">
+              <button id="incluir">Incluir</button>
+            </div>
+          </div>
+          <div class="tabela">
+            <table>
+              <thead>
+                <tr>
+                  <th class="coluna-descricao">Descrição</th>
+                  <th class="coluna-valor">Valor</th>
+                  <th class="coluna-tipo">Tipo</th>
+                  <th class="coluna-acao"></th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </section>
+      </div>
     </main>
 
     <!-- JAVASCRIPT -->
     <script src="js/script.js"></script>
-
-</body>
+  </body>
 </html>
