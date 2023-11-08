@@ -41,11 +41,12 @@ header .container {
 
 
 /* RESUMO */
-.resumo, .proximo-item {
+.resumo, 
+.proximo-item {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 30px 0 ;
+    margin: 20px 0 30px;
 }
 
 .resumo p {
@@ -58,6 +59,43 @@ header .container {
 }
 
 /* PROXIMO ITEM */
+.div-valor, 
+.div-descricao, 
+.div-tipo {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.proximo-item div {
+    margin: 0 20px;
+}
+
+.div-valor input, 
+.div-descricao input,
+.div-tipo select {
+    border: 1px solid rgb(27, 24, 24);
+    border-radius: 5px;
+    padding: 3px 5px;
+    font-size: 15px;
+}
+
+
+.div-descricao label,
+.div-valor label,
+.div-tipo label {
+    margin: 0 0 8px 0;
+    font-size: 18px;
+}
+
+.div-botao button {
+    background-color:  #601360;
+    color: #fff;
+    padding: 7px 10px;
+    border-radius: 7px;
+    font-size: 20px;
+    cursor: pointer;
+}
 
 
 /* TABELA */
