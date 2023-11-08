@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Controle Financeiro</title>
+
+    <!-- FONT AWESOME -->
+    <script
+      src="https://kit.fontawesome.com/521d690544.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <header id="    ">
+      <div class="container">
+        <section class="dados">
+          <i class="fa-solid fa-shield-cat" style="color: rgb(96, 19, 96)"></i>
+          <p class="nome">Bem-vinda Juliana</p>
+        </section>
+      </div>
+    </header>
+
+    <main id="main">
+      <div class="container">
+        <section class="financas">
+          <div class="resumo">
+            <p>Entradas: R$ <span class="entrada">0.00</span></p>
+            <p>Saídas: R$ <span class="saida">0.00</span></p>
+            <p>Total: R$ <span class="total">0.00</span></p>
+          </div>
+          <div class="proximo-item">
+            <div class="div-descricao">
+              <label for="descricao" class="descricao">Descrição:</label>
+              <input type="text" id="descricao" />
+            </div>
+            <div class="div-valor">
+              <label for="valor" class="valor">Valor:</label>
+              <input type="number" id="valor" />
+            </div>
+            <div class="div-tipo">
+              <label for="tipe" class="tipo">Tipo:</label>
+              <select id="tipo">
+                <option value="entrada">Entrada</option>
+                <option value="saida">Saída</option>
+              </select>
+            </div>
+            <div class="div-botao">
+              <button id="incluir" onclick="adicionar()">Incluir</button>
+            </div>
+          </div>
+          <div class="tabela">
+            <table>
+              <thead>
+                <tr>
+                  <th class="coluna-descricao">Descrição</th>
+                  <th class="coluna-valor">Valor</th>
+                  <th class="coluna-tipo">Tipo</th>
+                  <th class="coluna-acao"></th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        const tbody = document.querySelector("tbody");
+
+const descricao = document.querySelector("#descricao");
+const valor = document.querySelector("#valor");
+const tipo = document.querySelector("#tipo");
+const botaoIncluir = document.querySelector("#incluir");
+
+const entrada = document.querySelector(".entrada");
+const saida = document.querySelector(".saida");
+const total = document.querySelector(".total");
+
+let itens = [];
+
+function adicionar() {
+  if (descricao.value === "" || valor.value === "" || tipo.value === "") {
+    return alert("Preencha todos os campos");
+  }
+
+  itens.push({
+    desc: descricao.value,
+    //converte o número para absoluto
+    valor: Math.abs(valor.value),
+    tipo: tipo.value,
+  });
+
+  setItens();
+  carregarItens();
+
+  descricao.value = "";
+  valor.value = "";
+}
+
+function apagarItens(index) {
+  itens.splice(index, 1);
+  setItens();
+  carregarItens();
+}
+
+function inserirItens(item, index) {
+  let tr = document.createElement("tr");
+
+  tr.innerHTML = `
+        <td>${item.desc}</td>
+        <td>${item.valor}</td>
+        <td class="tipo-coluna">${item.tipo === "Entrada" ? '<i class="fa-solid fa-angle-up" style="color: #33a324;"></i>' : '<i class="fa-solid fa-angle-down" style="color: #af1818;"></i>'}</td>
+        <td class="coluna-acao">
+            <button onclick="apagarItens(${index})"><i class="fa-solid fa-trash-can" style="color: #29303d;"></i></button>
+        </td>
+    `;
+  tbody.appendChild(tr);
+}
+
+function carregarItens() {
+  itens = getItens();
+  tbody.innerHTML = "";
+  itens.forEach((item, index) => {
+    inserirItens(item, index);
+  });
+
+  getTotal();
+}
+
+function getTotal() {
+  const valorEntrada = itens.filter((item) => item.tipo === "Entrada").map((transaction) => Number(transaction.valor));
+  const valorSaida = itens.filter((item) => item.tipo === "Saida").map((transaction) => Number(transaction.valor));
+  const EntradaTotal = valorEntrada.reduce((acc, cur) => acc + cur, 0).toFixed(2);
+  const SaidaTotal = Math.abs(valorSaida.reduce((acc, cur) => acc + cur, 0)).toFixed(2);
+  const valorTotal = (EntradaTotal - SaidaTotal).toFixed(2);
+
+  entrada.innerHTML = EntradaTotal;
+  saida.innerHTML = SaidaTotal
+  total.innerHTML = valorTotal
+}
+
+
+
+
+const getItens = () => JSON.parse(localStorage.getItem("db_itens")) ?? []
+const setItens = () => localStorage.setItem("db_itens", JSON.stringify(itens)) 
+carregarItens()    
+    </script>
+  </body>
+</html>

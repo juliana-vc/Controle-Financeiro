@@ -12,7 +12,7 @@ const total = document.querySelector(".total");
 let itens;
 
 function adicionar() {
-  if (descricao.value === "" || valor.value === "" || tipo === "") {
+  if (descricao.value === "" || valor.value === "" || tipo.value === "") {
     return alert("Preencha todos os campos");
   }
 
@@ -61,21 +61,13 @@ function carregarItens() {
 }
 
 function getTotal() {
-  const valorEntrada = itens
-    .filter((item) => item.tipo === "Entrada")
-    .map((transaction) => Number(transaction.valor));
+  const valorEntrada = itens.filter((item) => item.tipo === "Entrada").map((transaction) => Number(transaction.valor));
 
-  const valorSaida = itens
-    .filter((item) => item.tipo === "Saida")
-    .map((transaction) => Number(transaction.valor));
+  const valorSaida = itens.filter((item) => item.tipo === "Saida").map((transaction) => Number(transaction.valor));
 
-  const EntradaTotal = valorEntrada
-    .reduce((acc, cur) => acc + cur, 0)
-    .toFixed(2);
+  const EntradaTotal = valorEntrada.reduce((acc, cur) => acc + cur, 0).toFixed(2);
 
-  const SaidaTotal = Math.abs(
-    valorSaida.reduce((acc, cur) => acc + cur, 0)
-  ).toFixed(2);
+  const SaidaTotal = Math.abs(valorSaida.reduce((acc, cur) => acc + cur, 0)).toFixed(2);
 
   const valorTotal = (EntradaTotal - SaidaTotal).toFixed(2);
 
