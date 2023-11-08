@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,12 +16,46 @@
 <body>
     
     <header id="header">
-
+        <div class="container">
+            <section class="dados">
+                <i class="fa-solid fa-shield-cat" style="color: #202327;"></i>  
+                <p class="nome">Bem-vinda Juliana</p>
+            </section>
+        </div>
     </header>
 
 
     <main id="main">
-
+        <div class="container">
+            <section class="financas">
+                <div class="resumo">
+                    <p>Entradas: R$ <span class="entrada">0.00</span></p>
+                    <p>Saídas: R$ <span class="saida">0.00</span></p>
+                    <p>Total: R$ <span class="total">0.00</span></p>
+                </div>
+                <div class="proximoItem">
+                    <div class="div-descricao">
+                        <label for="descricao" class="descricao">Descrição:</label>
+                        <input type="text" id="descricao">
+                    </div>
+                    <div class="div-valor">
+                        <label for="valor" class="valor">Valor:</label>
+                        <input type="number" id="valor">
+                    </div>
+                    <div class="div-tipo">
+                        <label for="tipe" class="tipo">Tipo:</label>
+                        <select id="tipo">
+                            <option value="entrada">Entrada</option>
+                            <option value="saida">Saída</option>
+                        </select>
+                    </div>
+                    <div class="div-botao">
+                        <button id="incluir">Incluir</button>
+                    </div>
+                </div>
+                
+            </section>
+        </div>
     </main>
 
     <!-- JAVASCRIPT -->
