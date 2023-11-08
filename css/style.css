@@ -99,3 +99,25 @@ header .container {
 
 
 /* TABELA */
+.coluna-acao button {
+    background-color: rgba(255, 255, 255, 0);
+}
+
+th{
+    font-size: 18px;
+    border-bottom: 1px solid #601360;
+}
+
+td {
+    width: 150px;
+    text-align: center;
+}
+
+.tabela {
+    display: flex;
+    justify-content: center;
+}
+table {
+    margin-top: 30px;
+}
+

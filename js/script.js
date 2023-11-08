@@ -19,7 +19,7 @@ function adicionar() {
   itens.push({
     desc: descricao.value,
     //converte o número para absoluto
-    val: Math.abs(valor.value),
+    valor: Math.abs(valor.value),
     tipo: tipo.value,
   });
 
@@ -41,12 +41,8 @@ function inserirItens(item, index) {
 
   tr.innerHTML = `
         <td>${item.desc}</td>
-        <td>${item.val}</td>
-        <td class="tipo-coluna">${
-          item.tipo === "Entrada"
-          ? '<i class="fa-solid fa-angle-up" style="color: #33a324;"></i>'
-          : '<i class="fa-solid fa-angle-down" style="color: #af1818;"></i>'
-        }</td>
+        <td>${item.valor}</td>
+        <td class="tipo-coluna">${item.tipo === "Entrada" ? '<i class="fa-solid fa-angle-up" style="color: #33a324;"></i>' : '<i class="fa-solid fa-angle-down" style="color: #af1818;"></i>'}</td>
         <td class="coluna-acao">
             <button onclick="apagarItens(${index})"><i class="fa-solid fa-trash-can" style="color: #29303d;"></i></button>
         </td>
@@ -67,18 +63,18 @@ function carregarItens() {
 function getTotal() {
   const valorEntrada = itens
     .filter((item) => item.tipo === "Entrada")
-    .map((transacao) => Number(transacao.val));
+    .map((transaction) => Number(transaction.valor));
 
   const valorSaida = itens
-    .filter((item) => item.tipo === "Saída")
-    .map((transacao) => Number(transacao.val));
+    .filter((item) => item.tipo === "Saida")
+    .map((transaction) => Number(transaction.valor));
 
   const EntradaTotal = valorEntrada
-    .reduce((acumulado, atual) => acumulado + atual, 0)
+    .reduce((acc, cur) => acc + cur, 0)
     .toFixed(2);
 
   const SaidaTotal = Math.abs(
-    valorSaida.reduce((acumulado, atual) => acumulado + atual, 0)
+    valorSaida.reduce((acc, cur) => acc + cur, 0)
   ).toFixed(2);
 
   const valorTotal = (EntradaTotal - SaidaTotal).toFixed(2);
@@ -89,6 +85,5 @@ function getTotal() {
 }
 
 const getItens = () => JSON.parse(localStorage.getItem("db_itens")) ?? []
-const setItens = () => 
-    localStorage.setItem("db_itens", JSON.stringify(itens)) 
+const setItens = () => localStorage.setItem("db_itens", JSON.stringify(itens)) 
 carregarItens()    
